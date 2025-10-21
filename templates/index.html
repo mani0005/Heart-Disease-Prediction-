@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Heart Disease Risk Predictor using Machine Learning</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            max-width: 700px;
+            margin: auto;
+            background-color: #f2f6f9;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.1);
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+        }
+        input[type="text"],
+        input[type="number"],
+        select,
+        button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 25px;
+            padding: 15px;
+            background-color: #eaf7ea;
+            border-left: 5px solid #4CAF50;
+            font-size: 16px;
+        }
+        .error {
+            background-color: #fbeaea;
+            border-left: 5px solid #f44336;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Heart Disease Risk Predictor using Machine Learning</h2>
+
+<form method="POST">
+    <label for="name">Your Name</label>
+    <input type="text" name="name" required placeholder="Enter your name"
+           value="{{ form_data.name if form_data.name is defined else '' }}">
+
+    <label for="age">Age (32 - 70)</label>
+    <input type="number" name="age" min="32" max="70" step="1" required
+           value="{{ form_data.age if form_data.age is defined else '' }}">
+
+    <label for="totChol">Total Cholesterol (107 - 696)</label>
+    <input type="number" name="totChol" min="107" max="696" step="1" required
+           value="{{ form_data.totChol if form_data.totChol is defined else '' }}">
+
+    <label for="sysBP">Systolic Blood Pressure (83 - 295)</label>
+    <input type="number" name="sysBP" min="83" max="295" step="1" required
+           value="{{ form_data.sysBP if form_data.sysBP is defined else '' }}">
+
+    <label for="diaBP">Diastolic Blood Pressure (48 - 142)</label>
+    <input type="number" name="diaBP" min="48" max="142" step="1" required
+           value="{{ form_data.diaBP if form_data.diaBP is defined else '' }}">
+
+    <label for="BMI">BMI (15.54 - 56.8)</label>
+    <input type="number" name="BMI" min="15.54" max="56.8" step="0.01" required
+           value="{{ form_data.BMI if form_data.BMI is defined else '' }}">
+
+    <label for="heartRate">Heart Rate (44 - 143)</label>
+    <input type="number" name="heartRate" min="44" max="143" step="1" required
+           value="{{ form_data.heartRate if form_data.heartRate is defined else '' }}">
+
+    <label for="glucose">Glucose (40 - 394)</label>
+    <input type="number" name="glucose" min="40" max="394" step="1" required
+           value="{{ form_data.glucose if form_data.glucose is defined else '' }}">
+
+    <label for="model">Select Model</label>
+    <select name="model" required>
+        {% for key, model_name in models.items() %}
+            <option value="{{ key }}" {% if form_data.model == key %}selected{% endif %}>{{ model_name }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Predict</button>
+</form>
+
+{% if prediction %}
+    <div class="result {% if 'Error' in prediction %}error{% endif %}">
+        <strong>Prediction:</strong> {{ prediction }}<br>
+        {% if confidence %}
+        <strong>Confidence:</strong> {{ confidence }}
+        {% endif %}
+    </div>
+{% endif %}
+
+</body>
+</html>
