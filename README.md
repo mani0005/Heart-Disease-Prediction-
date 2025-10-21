@@ -22,27 +22,34 @@ It uses real-world health data to train machine learning models and allows users
 
 ## 🗂️ Project Structure
 
-HeartDiseasePrediction/
+heart-disease-prediction/
+│
+├── app.py                        # Flask web application (runs the web UI)
+│
+├── train_models.py               # Model training script (ML pipeline)
+├── inspect_models.py             # Script to inspect saved .pkl models
 │
 ├── dataset/
-│ └── framingham.csv # Dataset file
+│   └── framingham.csv            # Original dataset
 │
-├── models/ # Trained model files
-│ ├── knn_model.pkl
-│ ├── logreg_model.pkl
-│ ├── scaler.pkl
-│ └── features.json
+├── models/                       # Folder for saved ML models
+│   ├── knn_model.pkl
+│   ├── logreg_model.pkl
+│   ├── scaler.pkl
+│   └── features.json
 │
-├── templates/
-│ └── index.html # Frontend HTML file for Flask app
+├── templates/                    # HTML files for Flask frontend
+│   └── index.html
 │
-├── static/ # (Optional) CSS, images, etc.
+├── static/                       # (optional) CSS, JS, or images
+│   ├── style.css
+│   └── logo.png
 │
-├── app.py # Flask web application
-├── train_models.py # Model training and saving script
-├── inspect_models.py # Script to inspect saved models
-├── requirements.txt # Python dependencies
-└── README.md
+├── requirements.txt              # All dependencies
+├── README.md                     # Project documentation
+├── .gitignore                    # To ignore unnecessary files/folders
+└── LICENSE                       # (optional) MIT or other open license
+
 
 
 ---
