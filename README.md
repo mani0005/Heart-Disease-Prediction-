@@ -152,7 +152,7 @@ Users input their details → data is scaled → model predicts risk → result 
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/mani005/heart-disease-prediction.git
+git clone https://github.com/mani0005/heart-disease-prediction.git
 cd heart-disease-prediction
 
 
